@@ -6,6 +6,7 @@ export default defineConfig({
   entry: ["src/*.ts"],
   format: ["esm"],
   outDir: "dist",
+  outExtensions: () =>({js: ".js"}),
   external: (id) => id.startsWith("gi://") || id.startsWith("resource:///"),
   banner: {
     js: [
