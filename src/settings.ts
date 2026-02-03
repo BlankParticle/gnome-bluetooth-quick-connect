@@ -1,5 +1,5 @@
-import type { Extension } from "@girs/gnome-shell/extensions/extension";
 import type Gio from "gi://Gio";
+import type { Extension } from "@girs/gnome-shell/extensions/extension";
 
 export default class Settings {
   settings: Gio.Settings;

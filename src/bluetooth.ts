@@ -24,11 +24,11 @@ export default class BluetoothController extends Signals.EventEmitter {
       this._deviceNotifyConnected.clear();
       this.emit("default-adapter-changed");
     });
-    this._connectSignal(this._client, "device-removed", (c, path) => {
+    this._connectSignal(this._client, "device-removed", (_c, path) => {
       this._deviceNotifyConnected.delete(path);
       this.emit("device-deleted", path);
     });
-    this._connectSignal(this._client, "device-added", (c, device) => {
+    this._connectSignal(this._client, "device-added", (_c, device) => {
       this._connectDeviceNotify(device);
       this.emit("device-inserted", device);
     });

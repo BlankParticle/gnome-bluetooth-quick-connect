@@ -1,11 +1,11 @@
-import type { Logger } from "./utils.js";
 import Clutter from "gi://Clutter";
 import GLib from "gi://GLib";
-import GObject from "gi://GObject";
 import type GnomeBluetooth from "gi://GnomeBluetooth";
+import GObject from "gi://GObject";
 import St from "gi://St";
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
+import type { Logger } from "./utils.js";
 
 type PopupSwitchParams = {
   showRefreshButton: boolean;
@@ -174,7 +174,7 @@ export class PopupSwitchWithButtonMenuItem extends PopupMenu.PopupSwitchMenuItem
   }
 
   _connectToggledEvent() {
-    this.connect("toggled", (item, state) => {
+    this.connect("toggled", (_item, state) => {
       this._client.connect_service(this._device.get_object_path(), state, null, () => {});
 
       // in case there is no change on device

@@ -1,12 +1,12 @@
-import BluetoothController from "./bluetooth.js";
-import Settings from "./settings.js";
-import { PopupBluetoothDeviceMenuItem, type PopupSwitchWithButtonMenuItem } from "./ui.js";
-import { Logger } from "./utils.js";
 import GLib from "gi://GLib";
 import type GnomeBluetooth from "gi://GnomeBluetooth";
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 import * as PopupMenu from "resource:///org/gnome/shell/ui/popupMenu.js";
+import BluetoothController from "./bluetooth.js";
+import Settings from "./settings.js";
+import { PopupBluetoothDeviceMenuItem, type PopupSwitchWithButtonMenuItem } from "./ui.js";
+import { Logger } from "./utils.js";
 
 export default class BluetoothQuickConnect extends Extension {
   _settings!: Settings;
