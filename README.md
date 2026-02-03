@@ -25,7 +25,7 @@ This extension allows paired Bluetooth devices to be connected and disconnected 
 </div>
 
 > [!NOTE]
-> This is a maintained fork of original Extension by [bjarosze](https://github.com/bjarosze).
+> This is a maintained fork of original Extension by [bjarosze](https://github.com/bjarosze). But its only receiving gnome shell and Security updates. For a more well maintained and feature-full extension consider using [Bluetooth Battery Meter](https://extensions.gnome.org/extension/6670/bluetooth-battery-meter)
 
 ## ❄️ Installation
 
