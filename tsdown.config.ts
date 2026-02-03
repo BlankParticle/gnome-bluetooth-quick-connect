@@ -1,11 +1,12 @@
-import { defineConfig } from "tsup";
-import { fs, $ } from "zx";
+import { defineConfig } from "tsdown";
+import {readdirSync, statSync} from "node:fs";
+import { execSync } from "node:child_process";
 
 export default defineConfig({
   entry: ["src/*.ts"],
   format: ["esm"],
   outDir: "dist",
-  bundle: false,
+  external: (id) => id.startsWith("gi://") || id.startsWith("resource:///"),
   banner: {
     js: [
       "// Copyright 2018 Bartosz Jaroszewski",
@@ -26,12 +27,16 @@ export default defineConfig({
       "",
     ].join("\n"),
   },
+  copy: {
+    from: "./assets",
+    to: "./dist",
+  },
   onSuccess: async () => {
     if (process.argv.includes("--no-pack")) return;
-    await fs.copy("./assets", "./dist");
-    const files = (await fs.readdir("./dist"))
-      .filter((f) => fs.statSync(`./dist/${f}`).isFile())
+
+    const files = (readdirSync("./dist"))
+      .filter((f) => (statSync(`./dist/${f}`)).isFile())
       .map((file) => `--extra-source=./${file}`);
-    await $`cd dist && gnome-extensions pack -f ${files} -o ./`;
+    execSync(`gnome-extensions pack -f ${files.join(" ")} -o ./`, { stdio: 'inherit', cwd: "./dist" });
   },
 });
