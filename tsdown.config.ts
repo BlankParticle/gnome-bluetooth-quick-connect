@@ -1,5 +1,5 @@
 import { defineConfig } from "tsdown";
-import {readdirSync, statSync} from "node:fs";
+import {cpSync, readdirSync, statSync} from "node:fs";
 import { execSync } from "node:child_process";
 
 export default defineConfig({
@@ -28,13 +28,9 @@ export default defineConfig({
       "",
     ].join("\n"),
   },
-  copy: {
-    from: "./assets",
-    to: "./dist",
-  },
   onSuccess: async () => {
+    cpSync("./assets", "./dist", { recursive: true });
     if (process.argv.includes("--no-pack")) return;
-
     const files = (readdirSync("./dist"))
       .filter((f) => (statSync(`./dist/${f}`)).isFile())
       .map((file) => `--extra-source=./${file}`);
